@@ -48,7 +48,7 @@ const Eksplore = () => {
 
   return (
     <>
-      <section className="container" id="explore">
+      <section className="container relative" id="explore">
         {/* header section */}
         <Motion.div
           initial={{ opacity: 0 }}
@@ -57,17 +57,14 @@ const Eksplore = () => {
           className="text-center md:max-w-162.5 mx-auto space-y-4"
         >
           <div className="flex items-center justify-center">
-            <img
-              src={Logo}
-              alt="DolanSolo logo"
-              className="w-20 md:w-24"
-            />
+            <img src={Logo} alt="DolanSolo logo" className="w-20 md:w-24" />
           </div>
           <p className="text-3xl font-bold font-merriweather">Explore</p>
           <p className="text-white/80">
-            Discover Surakarta through its most memorable places: royal architecture,
-            living batik neighborhoods, and peaceful gardens. Start with one landmark,
-            then follow the small alleys to find stories you can feel.
+            Discover Surakarta through its most memorable places: royal
+            architecture, living batik neighborhoods, and peaceful gardens.
+            Start with one landmark, then follow the small alleys to find
+            stories you can feel.
           </p>
         </Motion.div>
 
@@ -104,7 +101,7 @@ const Eksplore = () => {
               <img
                 src={data.image}
                 alt={data.title}
-                className="w-95 h-137 object-cover"
+                className="w-full aspect-2/3 md:aspect-3/4 object-cover rounded-2xl"
               />
               <div className="absolute w-full bottom-0 inset-0 bg-brand-dark/15">
                 <div className="h-full space-y-1 py-6 flex flex-col justify-end items-center">
@@ -127,19 +124,22 @@ const Eksplore = () => {
           <div className="rounded-2xl bg-white/5 border border-white/10 p-6">
             <p className="text-lg font-semibold">Culture first</p>
             <p className="text-white/80 mt-2">
-              Visit the Keraton area and batik workshops to see how tradition shapes daily life.
+              Visit the Keraton area and batik workshops to see how tradition
+              shapes daily life.
             </p>
           </div>
           <div className="rounded-2xl bg-white/5 border border-white/10 p-6">
             <p className="text-lg font-semibold">Walkable moments</p>
             <p className="text-white/80 mt-2">
-              Pair gardens with street food so you never run out of things to explore.
+              Pair gardens with street food so you never run out of things to
+              explore.
             </p>
           </div>
           <div className="rounded-2xl bg-white/5 border border-white/10 p-6">
             <p className="text-lg font-semibold">Best for photos</p>
             <p className="text-white/80 mt-2">
-              Look for patterned facades, colorful textiles, and golden-hour landscapes.
+              Look for patterned facades, colorful textiles, and golden-hour
+              landscapes.
             </p>
           </div>
         </div>

@@ -20,7 +20,7 @@ function App() {
     // Kita pake bg-brand-dark, pastiin warna ini udah lo daftar-in di CSS v4 lo ya!
     <div className="bg-brand-dark text-white">
       {/* Pake tag <div>, bukan cuma < > */}
-      <div style={bgImage} className="relative min-h-screen">
+      <div style={bgImage} className="relative min-h-screen ">
         <Navbar />
         <Hero />
 
@@ -30,7 +30,7 @@ function App() {
       </div>
 
       {/* Overflow dipindah ke sini biar sticky navbar nggak mati */}
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden relative flex flex-col items-center w-full">
         <Eksplore />
         <About />
         <Journal />
