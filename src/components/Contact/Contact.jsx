@@ -18,7 +18,10 @@ const Contact = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section id="contact" className="container py-20">
+    <section
+      id="contact"
+      className="container py-20 scroll-mt-24 lg:scroll-mt-32"
+    >
       <Motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -123,7 +126,8 @@ const Contact = () => {
           </button>
 
           <p className="text-xs text-white/60">
-            By sending, you agree we can contact you about your itinerary request.
+            By sending, you agree we can contact you about your itinerary
+            request.
           </p>
         </Motion.form>
       </div>

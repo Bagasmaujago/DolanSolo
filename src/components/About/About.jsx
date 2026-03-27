@@ -8,7 +8,10 @@ import ImgGarden from "../../assets/taman-balekambang.jpg";
 
 const About = () => {
   return (
-    <section id="about" className="container py-20">
+    <section
+      id="about"
+      className="container py-20 scroll-mt-24 lg:scroll-mt-32"
+    >
       <Motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -61,8 +64,8 @@ const About = () => {
           <div className="p-6 space-y-2">
             <p className="text-lg font-semibold uppercase">Batik Craft</p>
             <p className="text-white/80">
-              Explore Kampung Batik Kauman and learn how colors, patterns,
-              and stories are passed down.
+              Explore Kampung Batik Kauman and learn how colors, patterns, and
+              stories are passed down.
             </p>
           </div>
         </Motion.div>
@@ -82,8 +85,8 @@ const About = () => {
           <div className="p-6 space-y-2">
             <p className="text-lg font-semibold uppercase">Gardens</p>
             <p className="text-white/80">
-              Take a peaceful walk at Taman Balekambang and enjoy the
-              atmosphere around the water.
+              Take a peaceful walk at Taman Balekambang and enjoy the atmosphere
+              around the water.
             </p>
           </div>
         </Motion.div>

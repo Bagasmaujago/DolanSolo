@@ -41,7 +41,10 @@ const JournalData = [
 
 const Journal = () => {
   return (
-    <section id="journal" className="container py-20">
+    <section
+      id="journal"
+      className="container py-20 scroll-mt-24 lg:scroll-mt-32"
+    >
       <Motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

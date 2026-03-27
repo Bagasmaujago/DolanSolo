@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import logo from "../../assets/logo.png"; // Pastikan path logo bener ya!
+import logo from "../../assets/logo.png";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaXmark } from "react-icons/fa6";
 
-// Helper buat animasi (kalau file utility kamu beda, bisa pake yang ini aja langsung)
 const fadeUp = (delay) => ({
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -16,17 +15,23 @@ const fadeUp = (delay) => ({
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  // Susunan links: Explore ditaruh di tengah array
   const links = useMemo(
     () => [
       { label: "About", href: "#about", delay: 0.1 },
       { label: "Search", href: "#search", delay: 0.2 },
+      {
+        label: "Explore",
+        href: "#explore",
+        delay: 0.3,
+        isLogoReplacement: true,
+      },
       { label: "Journal", href: "#journal", delay: 0.4 },
       { label: "Contact", href: "#contact", delay: 0.5 },
     ],
     [],
   );
 
-  // Auto close mobile menu kalo window di-resize ke desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setOpen(false);
@@ -37,15 +42,12 @@ const Navbar = () => {
 
   return (
     <>
-      {/* NAVBAR CONTAINER 
-          Pake bg-white/5 (transparan banget) + backdrop-blur buat efek kaca
-      */}
       <nav className="fixed top-0 left-0 w-full z-[100] bg-white/[0.03] backdrop-blur-xl border-b border-white/10">
         <div className="container mx-auto px-6">
           {/* --- DESKTOP VERSION --- */}
           <div className="hidden lg:grid grid-cols-3 items-center py-6">
-            {/* Menu Kiri (About, Search) */}
             <div className="flex justify-end gap-16 pr-12">
+              {/* Hanya About & Search */}
               {links.slice(0, 2).map((link) => (
                 <Motion.a
                   key={link.label}
@@ -60,7 +62,7 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Logo Tengah */}
+            {/* Logo Tengah (Tetap manggil #explore) */}
             <div className="flex justify-center">
               <Motion.a
                 variants={fadeUp(0.3)}
@@ -78,9 +80,9 @@ const Navbar = () => {
               </Motion.a>
             </div>
 
-            {/* Menu Kanan (Journal, Contact) */}
             <div className="flex justify-start gap-16 pl-12">
-              {links.slice(2, 4).map((link) => (
+              {/* Hanya Journal & Contact */}
+              {links.slice(3, 5).map((link) => (
                 <Motion.a
                   key={link.label}
                   variants={fadeUp(link.delay)}
@@ -95,7 +97,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* --- MOBILE VERSION --- */}
+          {/* --- MOBILE TOP BAR --- */}
           <div className="lg:hidden flex items-center justify-between py-5">
             <a href="#explore">
               <img src={logo} alt="Logo" className="w-10" />
@@ -113,25 +115,32 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* --- MOBILE DROPDOWN --- */}
         <AnimatePresence>
           {open && (
             <Motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-black/90 backdrop-blur-2xl border-b border-white/10 overflow-hidden"
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              // Tambahin z-index super tinggi dan pointer-events-auto
+              className="lg:hidden fixed top-[70px] left-0 w-full bg-black/95 backdrop-blur-3xl border-b border-white/10 z-[999] overflow-hidden"
             >
-              <div className="flex flex-col items-center gap-8 py-12">
+              <div className="flex flex-col items-center gap-8 py-16">
                 {links.map((link) => (
-                  <a
+                  <Motion.a
                     key={link.label}
                     href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="text-lg font-bold uppercase tracking-[0.4em] text-white/60 hover:text-white"
+                    // Logic sakti: Tutup menu DULU, baru biarin browser scroll ke ID-nya
+                    onClick={() => setOpen(true)}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: link.delay }}
+                    // Tambahin cursor-pointer dan block biar area klik-nya luas
+                    className="text-lg font-bold uppercase tracking-[0.4em] text-white/60 hover:text-white transition-all duration-300 cursor-pointer block w-full text-center"
                   >
                     {link.label}
-                  </a>
+                  </Motion.a>
                 ))}
               </div>
             </Motion.div>
@@ -139,7 +148,6 @@ const Navbar = () => {
         </AnimatePresence>
       </nav>
 
-      {/* Spacer biar konten bawah nggak ketutup navbar */}
       <div className="h-24 lg:h-32" />
     </>
   );

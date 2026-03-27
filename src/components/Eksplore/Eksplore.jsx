@@ -48,7 +48,10 @@ const Eksplore = () => {
 
   return (
     <>
-      <section className="container relative" id="explore">
+      <section
+        className="container relative scroll-mt-24 lg:scroll-mt-32"
+        id="explore"
+      >
         {/* header section */}
         <Motion.div
           initial={{ opacity: 0 }}
